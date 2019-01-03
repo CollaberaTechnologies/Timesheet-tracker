@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ab2278d6d1c45779d31be4518132a11" Name="Diagram1">
+        <EntityTypeShape EntityType="LIVEDBModel.HC_CLIENT_BRANCH" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIVEDBModel.HC_CLIENTS" Width="1.5" PointX="0.75" PointY="51.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIVEDBModel.HC_CONS_BILLING" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIVEDBModel.HC_USERS" Width="1.5" PointX="0.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIVEDBModel.HCM_COUNTRIES" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIVEDBModel.HC_RESUME_BANK" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="LIVEDBModel.IHD_Timesheet_Template" Width="2.25" PointX="11" PointY="1" />
+        <EntityTypeShape EntityType="LIVEDBModel.hc_client_user" Width="1.5" PointX="3" PointY="65.75" />
+        <AssociationConnector Association="LIVEDBModel.FK__hc_client__Clien__6705EC88" />
+        <AssociationConnector Association="LIVEDBModel.FK__hc_client__Count__67FA10C1" />
+        <AssociationConnector Association="LIVEDBModel.FK__hc_client__Useri__68EE34FA" />
+        <EntityTypeShape EntityType="LIVEDBModel.IHD_Country_EmailID" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="LIVEDBModel.HC_EMAIL_SENT_LOG" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="LIVEDBModel.HC_Comment_Log" Width="1.5" PointX="10.375" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

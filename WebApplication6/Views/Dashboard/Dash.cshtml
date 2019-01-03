@@ -1,0 +1,857 @@
+﻿@model WebApplication6.Models.hc_client_user
+@{
+    ViewBag.Title = "Dashboard";
+    if (Session["userid"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+
+}
+
+
+
+<meta charset="utf-8" />
+<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Light Bootstrap Dashboard by Creative Tim</title>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<meta name="viewport" content="width=device-width" />
+<link href="~/Content/kendo/kendo.blueopal.min.css" rel="stylesheet" />
+
+<style>
+    .heading {
+        width: 150px;
+        height: 150px;
+        background-color: white;
+        background-size: cover;
+        display: block;
+        border-radius: 100px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        color: black;
+        padding: 15px 15px;
+        opacity: 0.2;
+    }
+
+    .bar {
+        height: 476px;
+    }
+
+    .session {
+        color: black;
+        margin-left: 46px;
+    }
+
+    .collalogo {
+        text-align: center;
+        display: block;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 5px 0px;
+        display: block;
+        font-size: 32px;
+        color: white;
+        text-align: center;
+        font-weight: 300;
+        line-height: 30px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .side1 {
+        background: #50b1fb;
+    }
+
+    .d1 {
+        width: 25px;
+    }
+
+    .button {
+        color: #ffffff;
+        background-color: #428bca;
+        border-color: #357ebd;
+    }
+  
+    .b1 {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.428571429;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .ch1 {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        padding: 4px 0 0 9px;
+        height: 35px;
+        width: 60%;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        background-color: #fff;
+        background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+        background: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+        background: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+        background: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+        background: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+        background-clip: padding-box;
+        box-shadow: 0 0 3px white inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+        color: #444;
+        text-decoration: none;
+        white-space: nowrap;
+        line-height: 24px;
+    }
+    .inner_table {
+        height: 300px;
+        overflow-y: auto;
+    }
+
+    .wrap {
+        width: 100%;
+    }
+
+    table.head tr td {
+        background: #eee;
+    }
+
+    .wrap table {
+        width: 100%;
+        table-layout: fixed;
+    }
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: powderblue;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: skyBlue;
+            color: black;
+        }
+
+
+</style>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="../assets/css/animate.min.css" rel="stylesheet" />
+<link href="../assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+<link href="~/Content/chosen.css" rel="stylesheet" />
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+<link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+<link href="http://cdn-na.infragistics.com/igniteui/2018.2/latest/css/themes/infragistics/infragistics.theme.css" rel="stylesheet" />
+<link href="http://cdn-na.infragistics.com/igniteui/2018.2/latest/css/structure/infragistics.css" rel="stylesheet" />
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+      rel="stylesheet" type="text/css" />
+ 
+
+@*<link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-select.css" rel="stylesheet" />*@
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />*@
+
+
+@section Scripts {
+
+
+    @*calender*@
+
+
+
+
+
+}
+
+@using (Html.BeginForm("Dash", "Dashboard"))
+{
+    @Html.AntiForgeryToken()
+
+
+
+
+    <!--DASHBOARD VIEW-->
+    <div class="wrapper">
+        <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
+
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a class="collalogo" href="Dash">
+                        Collabera
+                    </a>
+
+
+                </div>
+
+                <div class="session">
+
+                    <h5>@Session["username"].ToString()</h5>
+                    <h5 style="font-weight:600;">Login Time:</h5><h5>@Session["Time"].ToString()</h5>
+
+                </div>
+                <ul class="nav">
+                    @*<li>
+                           <p> @Session["username"].ToString()</p>
+                        </li>
+                        <li>
+                            <p> @Session["Time"].ToString()</p>
+                        </li>*@
+                    <li class="active">
+                        <a href="/Dashboard/Dash">
+                            <i class="pe-7s-graph"></i>
+                            <p style="margin: 0; line-height: 30px;font-size: 16px;font-weight: 400;margin-left: 45px;text-transform:capitalize;">Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Clients/Client">
+                            <i class="pe-7s-user"></i>
+                            <p style="margin: 0; line-height: 30px;font-size: 16px;font-weight: 400;margin-left: 45px;text-transform:capitalize;">Client</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Account/ResetPassword">
+                            <i class="pe-7s-lock"></i>
+                            <p style="margin: 0; line-height: 30px;font-size: 16px;font-weight: 400;margin-left: 45px;text-transform:capitalize;">Change Password</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href='/account/logout'>
+
+                            <i class="pe-7s-close-circle"></i>
+                            <p style="margin: 0; line-height: 30px;font-size: 16px;font-weight: 400;margin-left: 45px;text-transform:capitalize;">Log out</p>
+                        </a>
+                    </li>
+                    <li>
+                        <label class="text-danger" style="margin: 0; line-height: 30px;font-size: 16px;font-weight: 400;margin-left: 45px;text-transform:capitalize;">@ViewBag.mapped</label>
+                    </li>
+                    @*<li>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demo-1" style="margin: 0; line-height: 30px;font-size: 16px;font-weight: 400;margin-left: 45px;text-transform:capitalize;">Client Mapping</button>
+                    </li>*@
+
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="modal fade" id="demo-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title caps"><strong>Client User Mapping</strong></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="input-group col-md-12">
+                                <div class="col-md-3 " style="width:70%;">
+                                    <label class="card-label">User</label>
+                                    @Html.DropDownList("user", ViewBag.alluser as IEnumerable<SelectListItem>,"Please Select User", new { @class = " input-validation-error ", style = "width: 150%" })
+                                </div>
+                                <div class="col-md-3" style="width:70%;">
+                                    <label class="card-label">Country</label>
+                                    @Html.DropDownList("countrys", ViewBag.allcountry as IEnumerable<SelectListItem>, new { @class = " input-validation-error", style = "width: 150%" })
+                                    </div>
+                                <div class="col-md-3" style="width:70%;">
+                                    <label class="card-label">Client</label>
+                                    @Html.ListBox("client", (MultiSelectList)ViewBag.allclient, new { @class = " input-validation-error ", style = "width: 150%" , @multiple = "multiple" })
+                                    </div>
+                              
+                                        @*<input type="text" class="form-control" placeholder="Input Placeholder..." />
+            <span class="input-group-btn"><button class="btn btn-default" type="button">Action</button></span>*@
+                                    </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button>Map</button>
+                        @*<button type="button" class="btn btn-danger" data-dismiss="modal">&times;</button>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#demo-2" data-dismiss="modal">Close current, Launch Modal #2</button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#demo-3" data-dismiss="modal">Close current, Launch Modal #3</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand" style="color:black;">
+                            Timesheet Tracker
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card" style="background-color:powderblue;">
+
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-md-3 d1" style="width:25%;">
+                                            <div class="form-group">
+                                                <label class="card-label">Country</label>
+                                                @Html.DropDownListFor(Model => Model.country, ViewBag.countries as IEnumerable<SelectListItem>, "ALL", new { @class = "input-validation-error ch1 ",
+                                               
+                                           })
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 d1" style="width:25%;">
+                                            <div class="form-group">
+                                                <!--dropdown for To date-->
+                                                <label class="card-label">Year</label>
+                                                <div class="">
+                                                    @*@Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })*@
+                                                    @Html.DropDownListFor(Model=>Model.year, ViewBag.years as List<SelectListItem>, new { @class = " input-validation-error ch1" })
+                                                  
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 d1" style="width:25%;">
+                                            <div class="form-group">
+                                                <!--dropdown for from date-->
+                                                <label class="card-label">Month</label>
+                                                <div class="">
+
+
+                                                    @Html.ListBoxFor(Model=>Model.months, (MultiSelectList)ViewBag.month, new { @class = "input-validation-error ch1" })
+                                                    
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                        <!--BUTTON-->
+                                        <div class="col-md-3" style="width:25%;">
+                                            <div class="form-group">
+                                                <br />
+
+                                                @ViewBag.msg
+
+                                                <input type="submit" id="Loadbtn" value="Load" class="b1 button">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            @Html.HiddenFor(a => a.val)
+                        </div>
+                    </div>
+                    <!--piechart-->
+                    <div class="row">
+                        <div class="col-sm-12 col-md-10 col-md-offset-1">
+                            <div class="card ">
+                                <div class="header">
+                                    <h4 class="title text-center">Timesheet Statisitcs</h4>
+                                    @*<p class="category">All products including Taxes</p>*@
+                                </div>
+                                <div class="content">
+                                    <div id="container" style="height:300px;"></div>
+                                    <div class="footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--Barchart-->
+                    <div class="row">
+                        <div class="col-sm-12 col-md-10 col-md-offset-1">
+                            <div class="card ">
+                                <div class="header">
+
+                                    <h4 class="title text-center">Client Wise Missing Timesheet</h4>
+                                </div>
+                                <div class="">
+                                    <a href="avascript:void(0);" class="anchorDetail">View All</a>
+                                </div>
+
+                                <div class="content bar">
+                                    <div id="chartContainer"></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            @*<div id="c"></div>*@
+
+        </div>
+    </div>
+
+}
+<div class="col-sm-12 col-md-10 col-md-offset-1">
+    <div class="modal" id='myModalts'>
+        <div class="panel panel-primary modal-dialog col-sm-12 col-md-10 col-md-offset-1" style="margin-left:-21%;">
+
+            <div class="panel-heading" style="margin-top: -30px;margin-left: -15px;margin-right: -15px;">
+                View All
+            </div>
+           @*<div class="wrap">*@
+                <div class="panel-body">
+
+                    <div id='myModalConten'>
+                        <div class="wrap">
+                            <table id="customers" class="head">
+                                <tr>
+                                    <th>Clientname</th>
+                                    <th>Missing Count</th>
+                                </tr>
+                            </table>
+
+                            <div class="inner_table">
+                                <table>
+                                    @foreach (var item in ViewBag.viewall)
+                                    {
+                                        <tr>
+                                            <td>@item.clientname</td>
+                                            <td style="margin-left:2%;">@item.TSCount</td>
+
+                                        </tr>
+
+
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="background-color:darkred;color:white">CLOSE</button>
+            </div>
+        @*</div>*@
+        </div>
+    </div>
+
+
+    
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="~/scripts/chart/exporting.js"></script>
+    <script src="~/scripts/chart/highcharts.js"></script>
+   
+   
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/chosen.jquery.js"></script>
+    <script src="~/Scripts/chosen.proto.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+  
+   
+  
+    @*piechart view*@
+
+    <script>
+        function monthvalidate(month) {
+            debugger;
+            var i;
+            var flag = 0;
+            var flag1 = 0;
+
+            for (i = 0; i < month.length; i++) {
+
+                if (month[i] == 0) {
+                    flag = 1;
+                    document.getElementById('Loadbtn').disabled = 'disabled';
+                };
+                if (month[i] != 0) {
+                    if (flag == 1) {
+                        alert("Please select only ALL");
+                        document.getElementById('Loadbtn').disabled = 'disabled';
+                        flag1 = 1;
+                        break;
+                    }
+                    else {
+                        continue
+                    }
+
+                }
+
+            }
+            if (flag == 1) {
+                if (flag1 == 0) {
+
+                    document.getElementById('Loadbtn').disabled = '';
+                }
+            }
+
+        }
+        $(document).ready(function () {
+            $(' #Loadbtn').click(function () {
+                debugger;
+                var x = $("#months").val();
+                monthvalidate(x);
+                if (x == null) {
+                    alert("Please enter Month");
+                    document.getElementById('Loadbtn').disabled = 'disabled';
+                }
+              
+
+            });
+            $(function () {
+                $(".anchorDetail").click(function () {
+            
+                    var options = { "backdrop": "static", keyboard: true };
+                    $('#myModalts').modal(options);
+                    $('#myModalts').modal('show');
+                })
+            });
+
+            $("#months").chosen();
+            $("#country").chosen();
+            $("#client").select2();
+            $("#user").select2();
+            $("#countrys").select2();
+            $("#year").chosen();
+            $("#client").change(function () {
+                debugger;
+                var x = $("#user").val();
+                if (x == "") {
+                    alert("Please Select User"); 
+                    document.getElementById('client').disabled = 'disabled';
+                    document.getElementById('countrys').disabled = 'disabled';
+                }
+                });
+            $("#months").change(function () {
+                document.getElementById('Loadbtn').disabled = '';});
+            $("#user").change(function () {
+                document.getElementById('client').disabled = '';
+                document.getElementById('countrys').disabled = '';
+                $("#client").empty();      
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("getclient")',
+                    dataType: 'json',
+                    data: { countryid:  $("#countrys").val(),userid :$("#user").val() },
+                    success: function (city) {
+                        var candidatedata = city;
+                    
+                        var a = [];
+                        $.each(city, function (i, city) {
+                            a[i] = candidatedata[i].rid ;
+                            $("#client").append('<option value="'
+                                + candidatedata[i].rid + '">'
+                                + candidatedata[i].clientname + '</option>');
+
+                        });
+                        $("#client").val(a[0]);
+                    },
+                    error: function (ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+
+                });
+
+            $("#countrys").change(function(){
+                var x = $("#user").val();
+                if (x == "") {
+                    alert("Please Select User"); 
+                    document.getElementById('client').disabled = 'disabled';
+                    document.getElementById('countrys').disabled = 'disabled';
+                }
+                else{
+                    $("#client").empty();
+                    $.ajax({
+                        type: 'GET',
+                        url: '@Url.Action("getclient")',
+                        dataType: 'json',
+                        data: { countryid:  $("#countrys").val(),userid :$("#user").val() },
+                        success: function (city) {
+                            var candidatedata = city;
+                    
+                            var a = [];
+                            $.each(city, function (i, city) {
+                                a[i] = candidatedata[i].rid ;
+                                $("#client").append('<option value="'
+                                    + candidatedata[i].rid + '">'
+                                    + candidatedata[i].clientname + '</option>');
+
+                            });
+                            $("#client").val(a[0]);
+                        },
+                        error: function (ex) {
+                            alert('Failed.' + ex);
+                        }
+                    });
+                }
+            });
+          
+
+            $("#year").change(function(){
+                
+                document.getElementById('Loadbtn').disabled = '';
+                $("#months").empty();
+            
+                $.ajax({
+                    type: 'GET',
+
+                    url: '@Url.Action("GetMonths")',
+                    dataType: 'json',
+                    data: { iSelectedYear:  $("#year").val() },
+                    success: function (city) {
+                        var a = [];
+                        $.each(city, function (i, city) {
+                            a[i] = city.Value;
+
+                            $("#months").append('<option value="'
+                                + city.Value + '">'
+                                + city.Text + '</option>');
+
+                        });
+                        $("#months").val(a[0]).trigger("chosen:updated");
+                    },
+                    error: function (ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+
+            });
+            $(function () {
+           
+                var monthdetails= $("#months").val()
+             
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Getdata")',
+                    dataType: 'json',
+                    data: { year: $("#year").val(), month: monthdetails, country: $("#country").val() },
+                    success: function (data) {
+                        Highcharts.chart('container', {
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie',
+                                backgroundColor: ""
+
+                            },
+                            title: {
+                                text: ''
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    size :250,
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    shadow: 0.02,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+
+
+                                        style: {
+                                            fontFamily: 'Trebuchet MS,Verdana,sans-serif',
+                                            fontshadow: '0px 0px #ff0000',
+
+                                            fontSize: '15px',
+                                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor)
+                                        }
+                                    },
+                                    showInLegend: true
+                                }
+                            },
+                            legend: {
+
+                                itemStyle: {
+                                    font: '16pt Trebuchet MS, Verdana, sans-serif',
+
+                                    color: '#000000'
+                                },
+
+                                layout: 'proximate',
+                                align: 'right',
+                                alignColumns: true,
+
+                                verticalAlign: 'middle',
+                                useHTML: true,
+                                labelFormatter: function() {
+                                    return '<div >' + this.name + '  :   ' + this.y + '</div>';
+                                }
+
+                            },
+                            series: [{
+                                name: 'Timesheet',
+                                colorByPoint: true,
+                                data: [{
+                                    name: 'Submitted',
+
+                                    y: data.admin
+
+                                }, {
+                                    name: 'Received',
+                                    y: data.Finance
+                                }, {
+                                    name: ' Rejected',
+                                    y: data.sales
+                                }, {
+                                    name: 'Approved',
+                                    y: data.delivery
+                                },
+                                {
+                                    name: 'Missing',
+                                    y: data.superuser
+                                }]
+                            }]
+
+                        });
+                    }
+
+                })
+            });
+
+
+
+
+
+
+
+
+            var BarChartData = new Array();
+
+            @foreach (var item in ViewBag.TimeSheet)
+        {
+
+         @:BarChartData.push({'label':"@item.clientname",'y':@item.TSCount});
+
+        }
+
+            PlotChart();
+
+            function PlotChart()
+            {
+                window.onload = function () {
+
+                    var chart = new CanvasJS.Chart("chartContainer", {
+                        exportEnabled: true,
+                        animationEnabled: true,
+                        responsive: true,
+                        backgroundColor:"dimgrey",
+                        title: {
+                            text: "",
+                            width:"normal"
+                        },
+                        subtitles: [{
+                            text: ""
+                        }],
+                        axisX: {
+                            title: "Client Name",
+                            titleFontColor: "white",lineColor: "white",
+                            labelFontColor: "white",
+                            tickColor: "white"
+                        },
+                        axisY: {
+                            title: "Timesheet Count",
+                            titleFontColor: "white",
+                            lineColor: "white",
+                            labelFontColor: "white",
+                            tickColor: "white"
+                        },
+                        axisY2: {
+                            title: "Head Counts",
+                            titleFontColor: "#C0504E",
+                            lineColor: "#C0504E",
+                            labelFontColor: "#C0504E",
+                            tickColor: "#C0504E"
+                        },
+                        toolTip: {
+                            shared: true
+                        },
+                        legend: {
+                            cursor: "pointer",
+                            itemclick: toggleDataSeries
+                        },
+                        data: [
+                            {
+                                type: "column",
+                                name: "Missing Timesheet",
+
+                                yValueFormatString: "#,##0.# Units",
+                                dataPoints: BarChartData
+
+                            }
+
+                        ]
+                    });
+                    chart.render();
+
+                    function toggleDataSeries(e) {
+
+                        e.chart.render();
+                    }
+
+                }
+            }
+
+        });
+    </script>

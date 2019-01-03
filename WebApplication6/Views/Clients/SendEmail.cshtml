@@ -1,0 +1,534 @@
+﻿@model WebApplication6.Models.hc_client_user
+<link href="~/summernote-bs4.css" rel="stylesheet" />
+<link href="~/Content/chosen.css" rel="stylesheet" />
+
+@{
+
+
+}
+<style>
+    /*.ladda-button {
+	position: relative;
+	background: none;
+	border: 0;
+	padding: 0.5em 0.5em;
+	font-size: 1.3em;
+	cursor: pointer;
+  outline: 0;
+
+	-webkit-appearance: none;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+	.ladda-button[data-loading] {
+		cursor: default;
+	}
+    .ladda-button.blue {
+	background: #53b5e6;
+	color: #fff;
+	border-radius: 2px;
+	border: 1px solid transparent;
+}
+	.ladda-button.blue:hover {
+		border-color: rgba( 0, 0, 0, 0.07 );
+		background-color: #58c2f8;
+	}
+	.ladda-button.blue[data-loading] {
+		border-color: rgba( 0, 0, 0, 0.07 );
+		background-color: #999;
+	}
+    .ladda-button.red {
+	background: 	#FF0000;
+	color: #fff;
+	border-radius: 2px;
+	border: 1px solid transparent;
+}
+	.ladda-button.red:hover {
+		border-color: rgba( , 0, 0, 0.07 );
+		background-color: #FF0000;
+	}
+	.ladda-button.red[data-loading] {
+		border-color: rgba( 0, 0, 0, 0.07 );
+		background-color: #999;
+	}
+    .ladda-button .spinner {
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	top: 50%;
+	margin-top: -16px;
+	opacity: 0;
+	background-image: url( data:image/gif;base64,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);
+}
+    .ladda-button.slide-left {
+	overflow: hidden;
+}
+	.ladda-button.slide-left .label {
+		position: relative;
+	}
+	.ladda-button.slide-left .spinner {
+		left: 100%;
+		margin-left: -16px;
+	}
+
+.ladda-button.slide-left[data-loading] .label {
+	opacity: 0;
+	left: -100%;
+}
+.ladda-button.slide-left[data-loading] .spinner {
+	opacity: 1;
+	left: 50%;
+}
+
+.ladda-button.contract[data-loading] {
+	border-radius: 50%;
+	width: 52px;
+}
+	.ladda-button.contract[data-loading] .label {
+		opacity: 0;
+	}
+	.ladda-button.contract[data-loading] .spinner {
+		opacity: 1;
+	}
+    .ladda-button,
+.ladda-button .spinner,
+.ladda-button .label {
+	-webkit-transition: 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all;
+	   -moz-transition: 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all;
+	    -ms-transition: 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all;
+	        transition: 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all;
+}
+
+.ladda-button.zoom-in,
+.ladda-button.zoom-in .spinner,
+.ladda-button.zoom-in .label,
+.ladda-button.zoom-out,
+.ladda-button.zoom-out .spinner,
+.ladda-button.zoom-out .label {
+	-webkit-transition: 0.3s ease all;
+	   -moz-transition: 0.3s ease all;
+	    -ms-transition: 0.3s ease all;
+	        transition: 0.3s ease all;
+}*/
+
+
+    .button1 {
+        border-color: #3472F7;
+        color: #3472F7;
+        background-color: #3472F7;
+        color: white;
+    }
+
+    .button2 {
+        color: #fff;
+        background-color: #ac2925;
+        border-color: #761c19;
+        color: white;
+    }
+</style>
+<link href="~/Content/ladda-themeless.min.css" rel="stylesheet" />
+
+<!-- include libraries(jQuery, bootstrap) -->
+@using (Html.BeginForm("Client", "Clients", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.Label("Email Id", htmlAttributes: new { @class = "control-label col-sm-2" })
+        <div class="col-md-3" style="width:35%;">
+            @Html.DropDownList("FooBarDropDown", new List<SelectListItem>
+{
+           new SelectListItem {Text="Email Id Type",Value="0" },
+new SelectListItem{ Text="Offical", Value = "1" },
+new SelectListItem{ Text="Personal", Value = "2" },
+new SelectListItem{ Text="Both", Value = "3" },
+
+}, new { @class = "form-control text-box single-line", @id = "emailids" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ToEmail, htmlAttributes: new { @class = "control-label col-sm-2", @style = "margin-left:-9%;" })
+            <div class="col-md-3" style="width:34%;">
+                @Html.EditorFor(model => model.ToEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ToEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmailCC, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3" style="width:35%;">
+            @Html.EditorFor(model => model.EmailCC, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EmailCC, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailBCC, htmlAttributes: new { @class = "control-label col-md-2", @style = "margin-left:-9%;" })
+            <div class="col-md-3" style="width:34%;">
+                @Html.EditorFor(model => model.EmailBCC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailBCC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Template</label>
+        <div class="col-md-3" style="width:35%;">
+            @Html.DropDownList("FooBarDropDown", ViewBag.template as List<SelectListItem>, "Please Select a Template"
+, new { @class = "form-control text-box single-line", @id = "templates" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailSubject, htmlAttributes: new { @class = "control-label col-md-2", @style = "margin-left:-9%;" })
+            <div class="col-md-3" style="width:34%;">
+                @Html.EditorFor(model => model.EmailSubject, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailSubject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Body</label>
+        <div class="col-md-9">
+            <textarea id="summernote" name="msg" style="height:500px"></textarea>
+            @*<script>
+                    CKEDITOR.replace("summernote");
+                </script>*@
+
+        </div>
+    </div>
+
+    @*@Html.TextBox("file", "", new { type = "file", id = "fileInput", style = "margin-left:4%;" })*@
+    <br />
+
+
+    @Html.Hidden("closedata", "0")
+    @Html.HiddenFor(a => a.clients)
+    @Html.HiddenFor(a => a.year)
+    @Html.HiddenFor(a => a.monthdata)
+    @Html.HiddenFor(a => a.country)
+    @Html.HiddenFor(a => a.buttonvalue)
+    @Html.HiddenFor(a => a.lob)
+    @Html.HiddenFor(a => a.EMailBody)
+    @Html.HiddenFor(a => a.clid)
+    @Html.HiddenFor(a => a.name)
+    @Html.HiddenFor(a => a.from)
+    @Html.HiddenFor(a => a.till)
+    @Html.HiddenFor(a => a.tempid)
+    @Html.Hidden("Imagepath", "")
+    @Html.Hidden("uplodedfile", "")
+
+    @Html.Hidden("Bulkemail", ViewBag.bulk as string)
+
+    <div id="wrapper"></div>
+
+    <div class="panel-footer">
+        @*<input type="submit" class="btn btn-primary ladda-button" data-style="expand-left" value="Send" id="sendbtn"  style="border-color: #3472F7;color: #3472F7;background-color: #3472F7;color: white;" />*@
+        @*style="background-color: #ac2925;border-color: #761c19;color: white;"*@
+        @*<button type="submit" class="blue ladda-button  slide-left" data-style="slide-left" id="sendbtn"  ><span class="label">Send</span><span class="spinner"></span></button>*@
+        @*<button id="closebutton" type="submit"  class="ladda-button  slide-left red" data-style="slide-left"><span class="label">Close</span><span class="spinner"></span></button>*@
+        <button class="btn btn-primary ladda-button" data-style="expand-right" id="sendbtn"><span class="ladda-label">Send</span></button>
+        <button class="btn btn-danger ladda-button" data-style="expand-right" id="closebutton"><span class="ladda-label">Close</span></button>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 text-success">
+            @ViewBag.Status
+
+
+
+
+        </div>
+
+    </div>
+</div>
+}
+<script src="~/Scripts/spin.js"></script>
+<script src="~/Scripts/ladda.min.js"></script>
+<script src="~/summernote-bs4.js"></script>
+<script src="~/Scripts/chosen.jquery.js"></script>
+<script id="fileTemplate" type="text/x-kendo-template">
+    <span class='k-progress'></span>
+    <div class='file-wrapper'>
+        <span class='file-icon #=addExtensionClass(files[0].extension)#'></span>
+        <h4 class='file-heading file-name-heading'>Name: #=name#</h4>
+        <h4 class='file-heading file-size-heading'>Size: #=size# bytes</h4>
+        <strong class="k-upload-status">
+            <button type='button' class='k-upload-action'></button>
+            <button type='button' class='k-upload-action'></button>
+        </strong>
+    </div>
+</script>
+
+<script>
+    var fileSaveNames = [];
+    var fileuploded = [];
+    var files = [];
+    function addExtensionClass(extension) {
+        switch (extension) {
+            case '.jpg':
+            case '.img':
+            case '.png':
+            case '.gif':
+                return "img-file";
+            case '.doc':
+            case '.docx':
+                return "doc-file";
+            case '.xls':
+            case '.xlsx':
+                return "xls-file";
+            case '.pdf':
+                return "pdf-file";
+            case '.zip':
+            case '.rar':
+                return "zip-file";
+            default:
+                return "default-file";
+        }
+    }
+    function emailinformation(emaildata) {
+        $('#ToEmail').val(emaildata);
+    }
+
+    function uploadfile(companyname) {
+
+        if (companyname != null) {
+            if (companyname != "") {
+                var filedata = companyname.split(",");
+                filedata.forEach(function (element) {
+
+                    var filesinfo = { name: element };
+                files.push(filesinfo);
+                    fileSaveNames.push(element)
+                });
+            }
+
+        }
+
+        $('<input type="file" name="files" id="upload" />').appendTo("#wrapper").kendoUpload({
+            multiple: true,
+            template: kendo.template($('#fileTemplate').html()),
+            async: {
+                saveUrl: "/Clients/uploadfile",
+                removeUrl: "remove",
+                autoUpload: true
+            },
+            files: files,
+            success: onSuccess,
+
+
+        });
+
+        function onSuccess(e) {
+
+            var filepath = e.response.ImagePath;
+            var uid = e.files[0].uid;
+            var filename = e.response.ImageName;
+            fileuploded.push(filename);
+
+        }
+
+
+    }
+
+    $(document).ready(function () {
+        Ladda.bind('button[id=sendbtn]', {
+            callback: function( instance ) {
+                var progress = 0;
+                var interval = setInterval( function() {
+                    progress = Math.min( progress + Math.random() * 0.1, 1 );
+                    instance.setProgress( progress );
+
+                    if( progress === 1 ) {
+                        instance.stop();
+                        clearInterval( interval );
+                    }
+                }, 1000 );
+            }
+        });
+        Ladda.bind('button[id=closebutton]', {
+            callback: function (instance) {
+                var progress = 0;
+                var interval = setInterval(function () {
+                    progress = Math.min(progress + Math.random() * 0.1, 1);
+                    instance.setProgress(progress);
+
+                    if (progress === 1) {
+                        instance.stop();
+                        clearInterval(interval);
+                    }
+                }, 1000);
+            }
+        });
+
+        //var buttons = document.querySelectorAll('.ladda-button');
+
+        //Array.prototype.slice.call(buttons).forEach(function (button) {
+
+        //    var resetTimeout;
+
+        //    button.addEventListener('click', function () {
+
+        //        if (typeof button.getAttribute('data-loading') === 'string') {
+        //            button.removeAttribute('data-loading');
+        //        }
+        //        else {
+        //            button.setAttribute('data-loading', '');
+        //        }
+
+        //        clearTimeout(resetTimeout);
+        //        resetTimeout = setTimeout(function () {
+        //            button.removeAttribute('data-loading');
+        //        }, 2000);
+
+        //    }, false);
+
+        //});
+        //Ladda.bind('input[type=submit]');
+        $("#templates").chosen(
+        );
+
+        $(' #sendbtn').click(function () {
+        
+            var x = document.getElementById("ToEmail").value;
+            if (x == "") {
+                alert("Please enter TO emailaddress");
+                document.getElementById('sendbtn').disabled = 'disabled';
+            }
+            var y = document.getElementById("templates").value;
+            if (y == "") {
+                alert("Please select template");
+                document.getElementById('sendbtn').disabled = 'disabled';
+            }
+
+
+
+            $("#Imagepath").val(fileSaveNames.toString());
+            $("#uplodedfile").val(fileuploded.toString());
+
+
+
+
+        });
+        $(' #closebutton').click(function () {
+
+            $("#closedata").val("1");
+
+        });
+
+        uploadfile(null);
+
+        $(function () {
+                   });
+        var val = "<b>Please select a Template</b>";
+        $("#ToEmail").change(function () {
+            document.getElementById('sendbtn').disabled = '';
+        });
+
+        $(" #emailids").change(function () {
+      
+            var idvalue = $("#emailids").val();
+
+            if (idvalue == 1)
+                emailinformation('@ViewBag.offemail')
+            if (idvalue == 2)
+                emailinformation('@ViewBag.peremail')
+            if (idvalue == 3)
+                emailinformation('@ViewBag.bothemail')
+        });
+
+        $(' #summernote').summernote('code', val,
+            {
+
+                tabsize: 2,
+                height: 300,
+                margin_left: 10,
+
+
+            });
+    $("#templates").change(function () {
+        document.getElementById('sendbtn').disabled = '';
+        $("#emailids").change(function () {
+            var idvalue = $("#emailids").val();
+                document.getElementById('sendbtn').disabled = '';
+                if (idvalue == 1)
+                    emailinformation('@ViewBag.offemail')
+                if (idvalue == 2)
+                    emailinformation('@ViewBag.peremail')
+                if (idvalue == 3)
+                    emailinformation('@ViewBag.bothemail')
+            });
+
+            var val1 = $(" #templates").val();
+            $(" #tempid").val(val1)
+            var name = $(" #name").val();
+            var id = $(" #clid").val();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("getcontent")',
+                contentType: "application/json ",
+                data: { clid: id, id: val1 },
+                datatype: "json",
+                success: function (infodata) {
+                    var candidatedata = infodata.history;
+                    var tabledata = "";
+                    for (var i in candidatedata) {
+
+                        tabledata += "<tr  style='background-color: #eee;'><td style=' border: 1px solid black;text-align:center'>" + candidatedata[i].StartDate + "</td>" + "<td style=' border: 1px solid black;text-align:center'>" + candidatedata[i].EndDate + "</td></tr>";
+
+                    }
+                    var bulkval = $("#Bulkemail").val();
+                    if (bulkval == "0") {
+                        valdata = "<p>Dear " + name + " ,</p><table style=' border: 1px solid black; width:100%'> <caption style='color:black;font-size:17px;font-weight:bold'>Missing timesheet Details</caption><tr><th style=' border: 1px solid black;text-align:center'>StartDate</th><th style=' border: 1px solid black;text-align:center'>EndDate</th></tr>" + tabledata + " </table> " + infodata.TemplateContent + "<p><br></p><p></p><div class='WordSection1'><p class='MsoNormal' style='margin - top: 2pt; margin - bottom: 2pt; line - height: normal; '><b><span lang='EN - IN'>Regards,</span></b></p><p class='MsoNormal' style='margin - top: 2pt; margin - bottom: 2pt; line - height: normal; '><b><span lang='EN - IN'>" + infodata.Name + "</span></b></p><p class='MsoNormal' style='margin - top: 2pt; margin - bottom: 2pt; line - height: normal; '><b><span lang='EN - IN' style='font - size: 12.0pt'>Discover Your Potential. Visit&nbsp;<a href='http://www.collabera.com/'><span style='color:blue'>collabera.com</span></a></span></b><span lang='EN-IN' style='font-size: 10pt; font-family: &quot;Segoe UI&quot;, sans-serif;'> </span></p></div><br><br><p></p>";
+                    }
+                    else {
+                        valdata = "<p>Dear Candidate   ,</p>" + infodata.TemplateContent + "<p><br></p><p></p><div class='WordSection1'><p class='MsoNormal' style='margin - top: 2pt; margin - bottom: 2pt; line - height: normal; '><b><span lang='EN - IN'>Regards,</span></b></p><p class='MsoNormal' style='margin - top: 2pt; margin - bottom: 2pt; line - height: normal; '><b><span lang='EN - IN'>" + infodata.Name + "</span></b></p><p class='MsoNormal' style='margin - top: 2pt; margin - bottom: 2pt; line - height: normal; '><b><span lang='EN - IN' style='font - size: 12.0pt'>Discover Your Potential. Visit&nbsp;<a href='http://www.collabera.com/'><span style='color:blue'>collabera.com</span></a></span></b><span lang='EN-IN' style='font-size: 10pt; font-family: &quot;Segoe UI&quot;, sans-serif;'> </span></p></div><br><br><p></p>";
+                    }
+                    $('#summernote').summernote('reset');
+                    $('#summernote').summernote('code', valdata,
+
+    {
+        tabsize: 2,
+        height: 300,
+        margin_left: 10,
+    });
+                    $("#EMailBody").val($('#summernote').summernote('code'))
+                    $("#EmailSubject").val(infodata.TemplateName)
+                    $("#wrapper").empty();
+                    for (var i = fileSaveNames.length; i >= 0; i--) {
+                        if (fileSaveNames[i] == undefined) {
+                            fileSaveNames.pop();
+
+                        }
+                    }
+                        for (var i = files.length; i >= 0; i--) {
+                            if (files[i] == undefined) {
+                                files.pop();
+                            }
+                    }
+                    for (var i = fileuploded.length; i >= 0; i--) {
+                        if (fileuploded[i] == undefined) {
+                            fileuploded.pop();
+
+                        }
+
+
+                    }
+                    
+                    if (infodata.TemplateAttachment != null) {
+                        uploadfile(infodata.TemplateAttachment);
+                        
+                    }
+                    else {
+                        uploadfile(null);
+                    }
+
+                }
+            });
+        });
+    });
+</script>
+
+
+

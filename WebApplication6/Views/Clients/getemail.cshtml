@@ -1,0 +1,92 @@
+﻿
+@{
+                /**/
+
+                Layout = null;
+}
+
+
+
+
+<style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: powderblue;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: skyBlue;
+            color: black;
+        }
+
+    .inner_table {
+        height: 300px;
+        overflow-y: auto;
+    }
+    .wrap {
+        width: 100%;
+    }
+
+    table.head tr td {
+        background: #eee;
+    }
+    .wrap table {
+        width: 100%;
+        table-layout: fixed;
+    } 
+</style>
+
+
+
+<div class="wrap">
+
+    <table id="customers" class="head">
+        <tr>
+            <th>Email Sent</th>
+            <th>Template Name</th>
+            <th>TS Start Date</th>
+            <th>TS End Date</th>
+        </tr>
+    </table>
+    <div class="inner_table">
+        <table>
+            @foreach (var item in ViewBag.mail)
+            {
+                <tr>
+                    <td>
+                        @Html.Encode(@item.EmailSent)
+                    </td>
+                    <td>
+                        @Html.Encode(@item.TamplateName)
+                    </td>
+                    <td>
+                        @Html.Encode(@item.TSStartdate)
+                    </td>
+                    <td>
+                        @Html.Encode(@item.TSEnddate)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    </div>
+
+
+
